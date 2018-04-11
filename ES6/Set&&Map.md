@@ -2,6 +2,8 @@
 
 ## Set
 
+---
+
 ### Set特点
 
 - 1、Set本身是一个构造函数，用来生成Set数据结构
@@ -70,13 +72,45 @@
 
 ## WeakSet
 
+---
+
 ### WeakSet特点
 
-- 1、WeakSet与Set结构类似，也是不重复的集合.
-- 2、WeakSet成员只能是对象
+- 1、WeakSet与Set结构类似，也是不重复的集合。
+- 2、WeakSet成员只能是对象，而不能是其他引用类型。
 - 3、WeakSet中对对象的引用是弱引用，即当构造函数外部不在引用这个对象时，就会触发垃圾回收机制，随着垃圾回收机制的触发，WeakSet中的引用也自动消失了。
+- 4、WeakSet不可遍历(因为内部对象不确定什么时候就消失了)
+
+### WeakSet在项目中的应用
+
+> 因为垃圾回收机制依赖引用计数，如果一个值的引用计数不为0，垃圾回收机制就不会释放这块内存。有些时候忘记取消引用，导致内存无法释放，进而可能引发内存泄漏。WeakSet 里面的引用，都不计入垃圾回收机制，所以就不存在这个问题。因此，WeakSet 适合临时存放一组对象，以及存放跟对象绑定的信息。只要这些对象在外部消失，它在 WeakSet 里面的引用就会自动消失。
+
+```javascript
+//这是一段仅能在实例上调用的检测方法
+const foos = new WeakSet()
+class Foo {
+  constructor() {
+    foos.add(this)
+  }
+  method () {
+    if (!foos.has(this)) {
+      throw new TypeError('Foo.prototype.method 只能在Foo的实例上调用！');
+    }
+  }
+}
+```
+
+### WeakSet属性上的方法
+
+- 1、WeakSet.prototype.add(value) : 向WeakSet实例添加一个新成员。
+- 2、WeakSet.prototype.delete(value) : 清除WeakSet实例的指定成员。
+- 3、WeakSet.prototype.has(value) : 返回一个布尔值，表示某个值是否在WeakSet实例之中
+
+### 因为WeakSet无法遍历（forEach所以就没有Size属性）
 
 ## Map
+
+---
 
 ### Map特点
 
@@ -220,3 +254,48 @@ objToStrMap({yes: true, no: false})
 #### 数据类型转换的小总结
 
 > 总的来说，在进行类型转换的时候，唯一遇到的问题，就是键值类型不是字符串的问题，所以才会出现两种解决办法，当键名全是字符串时，我们可以很开心的进行正常转换，但是如果不完全都是字符串的键名，我们在转换JSON的时候需要转换成数组JSON，转回来的时候也需要逆操作
+
+## WeakMap
+
+---
+
+### WeakMap的特点
+
+- 1、WeakMap结构与Map结构类似，也是用于生成键值对集合，但是WeakMap只接受对象作为键名，不接受其他键名
+
+- 2、WeakMap的键名所指向的对象，不计入垃圾回收机制
+
+### WeakMap在项目中的应用
+
+> WeakMap的设计目的在于，有时我们想在某个对象上面存放一些数据，但是这回造成一些对象的引用。
+
+#### 例如
+
+```javascript
+const e1 = document.getElementById('foo');
+const e2 = document.getElementById('bar');
+const arr = [
+  [e1, 'foo 元素'],
+  [e2, 'bar 元素'],
+];
+
+// 不需要 e1 和 e2 的时候
+// 必须手动删除引用
+arr [0] = null;
+arr [1] = null;
+```
+
+#### 优化方法
+
+> 如果你想往对象上添加数据，还不想干扰回收机制那么就可以使用WeakMap
+
+#### 一个典型应用场景是，在网页的 DOM 元素上添加数据，就可以使用WeakMap结构。当该 DOM 元素被清除，其所对应的WeakMap记录就会自动被移除。
+
+```javascript
+const wm = new WeakMap();
+
+const element = document.getElementById('example');
+
+wm.set(element, 'some information');
+wm.get(element) // "some information"
+```
