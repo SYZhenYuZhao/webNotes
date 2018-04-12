@@ -299,3 +299,71 @@ const element = document.getElementById('example');
 wm.set(element, 'some information');
 wm.get(element) // "some information"
 ```
+
+> 其中弱引用只是针对键名的弱引用，而不是键值。(即只有键名不会被回收机制记录，但是键值会被深拷贝)
+
+```javascript
+const wm = new WeakMap();
+let key = {};
+let obj = {foo: 1};
+
+wm.set(key, obj);
+obj = null;
+wm.get(key)
+// Object {foo: 1}
+```
+
+### WeakMap语法
+
+- 1、get(key) 通过键名读取某个值 
+- 2、set(key,value) 通过key和value来设置值
+- 3、has() 检测数据中是否包含某个值，返回布尔值
+- 4、delete() 删除数据中某个值，返回布尔值
+
+> WeakMap中任何需要迭代器的方法都不可用
+
+### WeakMap 的用途
+
+- 1、在DOM上挂载属性，当DOM节点被删除的时候，属性自动消失，不会占用内存
+
+```javascript
+let myElement = document.getElementById('logo');
+let myWeakmap = new WeakMap();
+
+myWeakmap.set(myElement, {timesClicked: 0});
+
+myElement.addEventListener('click', function() {
+  let logoData = myWeakmap.get(myElement);
+  logoData.timesClicked++;
+}, false);
+```
+
+- 2、WeakMap 的另一个用处是部署私有属性
+
+```javascript
+const _counter = new WeakMap();
+const _action = new WeakMap();
+
+class Countdown {
+  constructor(counter, action) {
+    _counter.set(this, counter);
+    _action.set(this, action);
+  }
+  dec() {
+    let counter = _counter.get(this);
+    if (counter < 1) return;
+    counter--;
+    _counter.set(this, counter);
+    if (counter === 0) {
+      _action.get(this)();
+    }
+  }
+}
+
+const c = new Countdown(2, () => console.log('DONE'));
+
+c.dec()
+c.dec()
+// DONE
+```
+**看阮一峰ES6加了一些自己的理解**
