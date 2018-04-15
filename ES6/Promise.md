@@ -27,3 +27,16 @@
 - resolve函数的作用是，将Promise对象的状态从"未完成"变为"成功",在异步执行结束后，通过将**异步结果**作为参数的形式传递出去
 - reject函数的作用是，将Promise对象的状态从"未完成"变为"失败"，在异步操作失败是调用，并将**异步操作报出的错误**作为参数的形式传递出去。
 - then方法有两个参数，分别是resolved和rejected的回调函数(rejected的回调函数不是必传参数)，在then方法中我们可以对异步的结果进行一些处理。
+
+示例代码
+```javascript
+function timeout(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms, 'done'); //setTimeout 第二个参数之后的所有参数，会被当做第一个函数的参数传入到第一个函数中
+  });
+}
+
+timeout(100).then((value) => {
+  console.log(value);
+});
+```
