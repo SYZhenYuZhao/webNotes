@@ -149,4 +149,15 @@ timeout(100).then((value) => {
    })
 ```
 
-### 2、Promise.prototype.catch()
+#### 2、Promise.prototype.catch()
+
+> Promise.prototype.catch方法是.then(null,rejection)的别名，用于指定发生错误时的回调函数。
+
+```javascript
+  getJSON('/posts.json').then(function(posts) {
+    // ...
+  }).catch(function(error) {
+    // 处理 getJSON 和 前一个回调函数运行时发生的错误
+    console.log('发生错误！', error);
+  });
+```
