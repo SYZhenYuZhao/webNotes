@@ -151,7 +151,7 @@ timeout(100).then((value) => {
 
 #### 2、Promise.prototype.catch()
 
-> Promise.prototype.catch方法是.then(null,rejection)的别名，用于指定发生错误时的回调函数。
+- Promise.prototype.catch方法是.then(null,rejection)的别名，用于指定发生错误时的回调函数。
 
 ```javascript
   getJSON('/posts.json').then(function(posts) {
@@ -160,4 +160,65 @@ timeout(100).then((value) => {
     // 处理 getJSON 和 前一个回调函数运行时发生的错误
     console.log('发生错误！', error);
   });
+
+  //等同于
+  getJSON('/posts.json').then(function(posts) {
+    // ...
+  })
+  .then(null, (err) => console.log('发生错误！', error);)
 ```
+
+- 抛出错误的三种写法
+
+```javascript
+  // 方法一
+  const promise = new Promise(function(resolve, reject) {
+    throw new Error('test');
+  });
+  promise.catch(function(error) {
+    console.log(error);
+  });
+  // 方法二
+  const promise = new Promise(function(resolve, reject) {
+    try {
+      throw new Error('test');
+    } catch(e) {
+      reject(e);
+    }
+  });
+  promise.catch(function(error) {
+    console.log(error);
+  });
+
+  // 方法三
+  const promise = new Promise(function(resolve, reject) {
+    reject(new Error('test'));
+  });
+  promise.catch(function(error) {
+    console.log(error);
+  });
+
+  /*从上面的代码中不难看出 reject方法等同于抛出错误*/
+```
+
+- 如果Promise状态已经变成了resolved,在抛出错误是无效的
+
+- Promise对象的错误具有"冒泡"性质，会一直向后传递，知道被捕获位置。也就是说，错误总是会被下一个的catch捕获
+
+```javascript
+  getJSON('/post/1.json').then(function(post) {
+    return getJSON(post.commentURL);
+  }).then(function(comments) {
+    // some code
+  }).catch(function(error) {
+    // 处理前面三个Promise产生的错误
+  });
+  //一个是由getJSON产生两个是由.then产生，这三个中任何一个抛出错误都会被最后一个catch捕获
+```
+
+- 监听报错的方法
+
+> 通常来说监听报错有两种方法:</br>
+第一种就是用.then的第二个参数监听，使用reject的回调来输出报错。</br>
+第二种就是通过.catch方法监听报错</br>
+**我们这里通常使用.catch的方法监听报错**理由是因为.catch方法能够监听之前所有Promise产生的错误，并且其写法规范与同步写法(try/catch)相似，好维护。
