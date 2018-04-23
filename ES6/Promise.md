@@ -222,3 +222,5 @@ timeout(100).then((value) => {
 第一种就是用.then的第二个参数监听，使用reject的回调来输出报错。</br>
 第二种就是通过.catch方法监听报错</br>
 **我们这里通常使用.catch的方法监听报错**理由是因为.catch方法能够监听之前所有Promise产生的错误，并且其写法规范与同步写法(try/catch)相似，好维护。
+
+- 如果没有加catch方法处理error的话，promise内部会抛出错误，但是不会影响外部程序的正常执行。
