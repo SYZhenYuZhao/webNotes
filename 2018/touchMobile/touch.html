@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #AAA {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ff6666;
+            color: black;
+        }
+        #ul{
+            width:800px;
+            height:800px;
+        }
+        #ul li{
+            width:300px;
+            margin-left: 50px;
+            margin-top: 20px;
+            list-style: none;
+            float:left;
+        }
+        #ul li img{
+            display: inline-block;
+            width:100%;
+        }
+        .mask{
+            position: fixed;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1;
+        }
+        .top{
+            display: none;
+            position: absolute;
+            width:70%;
+            top:15%;
+            left:15%;
+            right:15%;
+            --bottom:15%;
+        }
+        .top img{
+            width:100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+    <div id='AAA'>
+        <ul id='ul'>
+            <li>
+                <img src="./img/1.jpg" alt="">
+            </li>
+            <li>
+                <img src="./img/2.jpg" alt="">
+            </li>
+            <li>
+                <img src="./img/3.jpg" alt="">
+            </li>
+            <li>
+                <img src='./img/4.jpg'>
+            </li>
+        </ul>
+    </div>
+    <div class='mask'>
+        <div class='top'>
+            <img src="./img/1.jpg" id='show'>
+        </div>
+    </div>
+</body>
+</html>
+<script src='./lib/move.js'></script>
+<script>
+    //获取ul
+    let ulTarget = document.getElementById('ul');
+    //事件委托
+    ulTarget.onclick = function(e){
+        e = e || window.event;
+        let target = e.target || e.srcElement,
+            el = target.nodeName;    
+        //控制显隐
+        if(el === 'LI'||el==='IMG'){
+            let mask = document.getElementsByClassName('mask')[0];
+            let top = document.getElementsByClassName('top')[0];
+            mask.style.display = 'block';
+            top.style.display = 'block';
+        }
+    }
+    let mask = document.getElementsByClassName('mask')[0];
+    mask.addEventListener('click',function(e){
+        e.stopPropagation()
+        let mask = document.getElementsByClassName('mask')[0];
+        let top = document.getElementsByClassName('top')[0];
+        mask.style.display = 'none';
+        top.style.display = 'none';
+    },true)
+    /*
+        需求: 1、状态切换（显示/隐藏）
+              2、接收一个路径（创建一个模态框和图片）
+    */
+
+
+    function handleImgModal(url,isShow=false) {
+        if(!url){
+            throw  'url is required';
+            return;
+        }
+    }
+    let arr = ["./img/1.jpg", "./img/2.jpg", "./img/3.jpg", "./img/4.jpg"]
+    let show = document.getElementById('show');
+    let target = document.getElementsByClassName('mask')[0];
+    // console.log(target)
+    // console.log(Move)
+    new Move(target,'right',function(){
+        let content = show.getAttribute('src')
+        //
+        let index = arr.findIndex((val)=>val===content);
+        let len = arr.length-1;
+
+        if(index>=len){
+            alert('没有更多图片了')
+            return;
+        }
+        let newContent = arr[index+1]
+        show.setAttribute('src',newContent)
+    });
+    new Move(target, 'left', function () {
+            let content = show.getAttribute('src')
+            //
+            let index = arr.findIndex((val) => val === content);
+
+
+            if (index<=0) {
+                alert('没有更多图片了')
+                return;
+            }
+            let newContent = arr[index - 1]
+            show.setAttribute('src', newContent)
+    });
+
+
+  
+</script>
