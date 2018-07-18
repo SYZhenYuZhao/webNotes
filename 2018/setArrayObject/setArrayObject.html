@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+ function handleRepeatPath(){
+ let path = [{P:1,O:2},{P:1,O:3},{P:1,O:2}];
+    var hash = {};
+    let arr=[];
+    arr = path.reduce(function(item, next) {
+        hash[next.P&&next.O] ? '' : hash[next.P&&next.O] = true && item.push(next);
+        return item
+    }, [])
+    console.log(arr);
+    return (arr.length===path.length);
+  }
+ let a = handleRepeatPath()
+ console.log(a)
+</script>
