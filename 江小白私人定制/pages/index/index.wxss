@@ -1,0 +1,32 @@
+.footer{
+  width:100%;
+  position:fixed;
+  display: flex;
+  bottom:0;
+  background: #0730b0;
+}
+
+.footerLine{
+  line-height: 50px;
+  color:#fff;
+}
+
+.footerButton{
+  width:48%;
+  color:#fff;
+  font-size: 20px;
+  background: #0730b0;
+}
+
+.start{
+  width: 100%;
+  padding:0 20px;
+  box-sizing: border-box;
+  position: fixed;
+  bottom:80px;
+}
+
+.startButton{
+  width: 100%;
+  color:deepSkyblue;
+}

@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="start">
+    <button class="startButton">开始定制</button>
+  </view>
+  <view class="footer">
+    <button class="footerButton">了解定制</button>
+    <span class="footerLine">|</span>
+    <button class="footerButton">我的订单</button>
+  </view>
+</view>
