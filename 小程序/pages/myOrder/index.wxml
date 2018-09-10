@@ -1,0 +1,19 @@
+<view class="order-container">
+  <view class="order-header">
+    <view class="order-header-item {{selectedOrderTabIndex==0?'active':''}}" data-current="0" bindtap="orderTabTap">全部订单</view>
+    <view class="order-header-item {{selectedOrderTabIndex==1?'active':''}}" data-current="1" bindtap="orderTabTap">待付款</view>
+    <view class="order-header-item {{selectedOrderTabIndex==2?'active':''}}" data-current="2" bindtap="orderTabTap">待发货</view>
+    <view class="order-header-item {{selectedOrderTabIndex==3?'active':''}}" data-current="3" bindtap="orderTabTap">已发货</view>
+    <view class="order-header-item {{selectedOrderTabIndex==4?'active':''}}" data-current="4" bindtap="orderTabTap">已收货</view>
+  </view>
+  <swiper class="order-swiper" current="{{selectedOrderTabIndex}}" bindchange="orderSwiperChange">
+    <swiper-item class="order-swiper-item">1</swiper-item>
+    <swiper-item class="order-swiper-item">2</swiper-item>
+    <swiper-item class="order-swiper-item">3</swiper-item>
+    <swiper-item class="order-swiper-item">4</swiper-item>
+    <swiper-item class="order-swiper-item">5</swiper-item>
+  </swiper>
+  <view class="order-footer">
+    <navigator url="../index/index" class="order-footer-button">返回</navigator>
+  </view>
+</view>

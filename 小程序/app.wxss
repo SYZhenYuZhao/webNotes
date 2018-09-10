@@ -1,0 +1,10 @@
+/**app.wxss**/
+page{
+  height:100%;
+}
+.container {
+  height: 100%;
+  box-sizing: border-box;
+  background: url(http://portalstest.img-cn-shenzhen.aliyuncs.com/por/27937718a20d0655bad606b6aaadbed9.jpg) no-repeat center;
+  background-size: cover;
+} 
