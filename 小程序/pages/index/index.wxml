@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="enter-start-order-box">
+    <button class="enter-start-order-button">开始定制</button>
+  </view>
+  <view class="enter-footer">
+    <navigator url="../custom/index" class="enter-footer-button">了解订制</navigator>
+    <span class="enter-footer-line">|</span>  
+    <navigator url="../myOrder/index" class="enter-footer-button">我的订单</navigator>
+  </view>
+</view>

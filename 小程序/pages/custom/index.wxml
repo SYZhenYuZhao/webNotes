@@ -1,0 +1,25 @@
+<view class="custom-container">
+  <view class="custom-content-box">
+    <view class="custom-content">
+      <view class="custom-content-item {{index==0?'first-item':''}}" wx:for="{{customArr}}">
+        <view class="custom-content-item-query ">
+          <view class="custom-content-item-query-icon">问</view>
+          <view class="custom-content-item-query-content">
+          {{item.query}}
+          </view>
+        </view>
+        <view class="custom-content-item-answer">
+          <view class="custom-content-item-answer-icon">答</view>
+          <view class="custom-content-item-answer-content">
+          {{item.answer}}
+          </view>
+        </view>
+      </view>
+      <button class="custom-content-button">咨询客服</button>
+    </view>
+  </view>
+  
+  <view class="custom-footer">
+    <navigator url="../index/index" class="custom-footer-button">返回</navigator>
+  </view>
+</view>

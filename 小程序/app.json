@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/myOrder/index",
+    "pages/custom/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "江小白私人订制",
+    "navigationBarTextStyle":"black"
+  }
+}
