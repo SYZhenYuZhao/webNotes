@@ -49,7 +49,7 @@
 
 .custom-content-item-query-content{
   margin-left: 9rpx;
-  font-size: 27rpx;
+  font-size: 30rpx;
   font-weight: bolder;
   line-height: 48.6rpx;
   flex: 1;
@@ -73,7 +73,7 @@
 
 .custom-content-item-answer-content{
   margin-left: 9rpx;
-  font-size: 27rpx;
+  font-size: 30rpx;
   line-height: 48.6rpx;
   color:#949494;
 }
