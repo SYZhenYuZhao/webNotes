@@ -32,8 +32,10 @@
 
 .enter-start-order-button{
   color:#1c51d3;
+  background: #fff;
   font-size: 28rpx;
   height:78rpx;
   line-height: 78rpx;
   text-align: center;
+  border-radius: 20rpx;
 }

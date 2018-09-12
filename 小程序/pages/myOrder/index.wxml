@@ -7,7 +7,38 @@
     <view class="order-header-item {{selectedOrderTabIndex==4?'active':''}}" data-current="4" bindtap="orderTabTap">已收货</view>
   </view>
   <swiper class="order-swiper" current="{{selectedOrderTabIndex}}" bindchange="orderSwiperChange">
-    <swiper-item class="order-swiper-item">1</swiper-item>
+    <swiper-item class="order-swiper-item">
+      <view class="makeOrder">
+        订单
+      </view>
+      <view class="makeOrder">
+        订单
+      </view>
+      <view class="makeOrder">
+        订单
+      </view>
+      <view class="makeOrder">
+        订单
+      </view>
+      <view class="makeOrder">
+        订单
+      </view>
+      <view class="makeOrder">
+        订单
+      </view>
+      <view class="makeOrder">
+        订单
+      </view>
+      <view class="makeOrder">
+        订单
+      </view>
+      <view class="makeOrder">
+        订单
+      </view>
+      <view class="makeOrder">
+        订单
+      </view>
+    </swiper-item>
     <swiper-item class="order-swiper-item">2</swiper-item>
     <swiper-item class="order-swiper-item">3</swiper-item>
     <swiper-item class="order-swiper-item">4</swiper-item>

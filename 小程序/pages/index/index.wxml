@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="enter-start-order-box">
-    <button class="enter-start-order-button">开始定制</button>
+    <navigator url="../makeBottle/index" class="enter-start-order-button">开始定制</navigator>
   </view>
   <view class="enter-footer">
     <navigator url="../custom/index" class="enter-footer-button">了解订制</navigator>

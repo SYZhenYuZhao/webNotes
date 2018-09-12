@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/myOrder/index",
-    "pages/custom/index"
+    "pages/custom/index",
+    "pages/makeBottle/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
